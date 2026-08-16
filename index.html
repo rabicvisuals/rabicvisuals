@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="RabicVisuals">
   <meta property="og:title" content="RabicVisuals — Poročni in portretni fotograf, Slovenija">
   <meta property="og:description" content="RabicVisuals je fotograf iz Slovenije, specializiran za poročno, portretno in event fotografijo ter photobooth najem. Pristne fotografije, ki ostanejo.">
-  <meta property="og:image" content="https://www.rabicvisuals.com/images/hero/hero-home.jpg">
+  <meta property="og:image" content="https://www.rabicvisuals.com/images/hero/hero-slide-01.png">
   <meta property="og:url" content="https://www.rabicvisuals.com/index.html">
   <meta property="og:locale" content="sl_SI">
 
@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RabicVisuals — Poročni in portretni fotograf, Slovenija">
   <meta name="twitter:description" content="RabicVisuals je fotograf iz Slovenije, specializiran za poročno, portretno in event fotografijo ter photobooth najem. Pristne fotografije, ki ostanejo.">
-  <meta name="twitter:image" content="https://www.rabicvisuals.com/images/hero/hero-home.jpg">
+  <meta name="twitter:image" content="https://www.rabicvisuals.com/images/hero/hero-slide-01.png">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
@@ -53,9 +53,38 @@
   </header>
 
   <main id="main">
-    <section class="hero" aria-label="Naslovna fotografija">
-      <div class="hero-media">
-        <img src="images/hero/hero-home.jpg" alt="Črno-bela poročna fotografija rok in poročnih prstanov, RabicVisuals" width="2048" height="1462">
+    <section class="hero hero-carousel" aria-label="Naslovna galerija fotografij">
+      <div class="hero-slides" id="hero-slides">
+        <div class="hero-slide is-active" data-slide="0">
+          <img src="images/hero/hero-slide-01.png" alt="Črno-bela poročna fotografija para in poročnih prstanov" width="1672" height="941" fetchpriority="high">
+        </div>
+        <div class="hero-slide" data-slide="1" aria-hidden="true">
+          <img src="images/hero/hero-slide-02.jpg" alt="Poročni trenutek" width="1600" height="2000" loading="lazy">
+        </div>
+        <div class="hero-slide" data-slide="2" aria-hidden="true">
+          <img src="images/hero/hero-slide-03.jpg" alt="Poročna fotografija" width="1600" height="1067" loading="lazy">
+        </div>
+        <div class="hero-slide" data-slide="3" aria-hidden="true">
+          <img src="images/hero/hero-slide-04.jpg" alt="Poročni trenutek" width="1600" height="2000" loading="lazy">
+        </div>
+        <div class="hero-slide" data-slide="4" aria-hidden="true">
+          <img src="images/hero/hero-slide-05.jpg" alt="Poročna fotografija" width="1600" height="1067" loading="lazy">
+        </div>
+        <div class="hero-slide" data-slide="5" aria-hidden="true">
+          <img src="images/hero/hero-slide-06.jpg" alt="Poročni trenutek" width="1600" height="2000" loading="lazy">
+        </div>
+      </div>
+
+      <button class="hero-arrow hero-arrow-prev" id="hero-prev" type="button" aria-label="Prejšnja fotografija">&#8592;</button>
+      <button class="hero-arrow hero-arrow-next" id="hero-next" type="button" aria-label="Naslednja fotografija">&#8594;</button>
+
+      <div class="hero-dots" id="hero-dots" aria-label="Izbira naslovne fotografije">
+        <button class="hero-dot is-active" type="button" data-slide="0" aria-label="Prikaži prvo fotografijo" aria-current="true"></button>
+        <button class="hero-dot" type="button" data-slide="1" aria-label="Prikaži drugo fotografijo"></button>
+        <button class="hero-dot" type="button" data-slide="2" aria-label="Prikaži tretjo fotografijo"></button>
+        <button class="hero-dot" type="button" data-slide="3" aria-label="Prikaži četrto fotografijo"></button>
+        <button class="hero-dot" type="button" data-slide="4" aria-label="Prikaži peto fotografijo"></button>
+        <button class="hero-dot" type="button" data-slide="5" aria-label="Prikaži šesto fotografijo"></button>
       </div>
     </section>
 

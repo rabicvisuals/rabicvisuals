@@ -224,6 +224,67 @@
   }
 
   /* ---------------------------------------------------------------------
+     Homepage hero carousel
+     --------------------------------------------------------------------- */
+  var heroCarousel = document.querySelector(".hero-carousel");
+  if (heroCarousel) {
+    var heroSlides = Array.prototype.slice.call(heroCarousel.querySelectorAll(".hero-slide"));
+    var heroDots = Array.prototype.slice.call(heroCarousel.querySelectorAll(".hero-dot"));
+    var heroPrev = document.getElementById("hero-prev");
+    var heroNext = document.getElementById("hero-next");
+    var heroIndex = 0;
+    var heroTouchStartX = null;
+
+    function showHeroSlide(index) {
+      heroIndex = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach(function (slide, i) {
+        var active = i === heroIndex;
+        slide.classList.toggle("is-active", active);
+        slide.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      heroDots.forEach(function (dot, i) {
+        var active = i === heroIndex;
+        dot.classList.toggle("is-active", active);
+        if (active) {
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function nextHeroSlide() { showHeroSlide(heroIndex + 1); }
+    function prevHeroSlide() { showHeroSlide(heroIndex - 1); }
+
+    if (heroPrev) heroPrev.addEventListener("click", prevHeroSlide);
+    if (heroNext) heroNext.addEventListener("click", nextHeroSlide);
+    heroDots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        showHeroSlide(Number(dot.getAttribute("data-slide")));
+      });
+    });
+
+    heroCarousel.addEventListener("touchstart", function (e) {
+      heroTouchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    heroCarousel.addEventListener("touchend", function (e) {
+      if (heroTouchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - heroTouchStartX;
+      if (Math.abs(dx) > 45) {
+        if (dx > 0) prevHeroSlide();
+        else nextHeroSlide();
+      }
+      heroTouchStartX = null;
+    }, { passive: true });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") prevHeroSlide();
+      if (e.key === "ArrowRight") nextHeroSlide();
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Contact form (front-end only — connect to Formspree / Web3Forms later)
      --------------------------------------------------------------------- */
   var contactForm = document.querySelector(".contact-form");
