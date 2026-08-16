@@ -1256,22 +1256,27 @@ section { position: relative; }
 }
 
 
-/* Hero carousel: elegant crossfade + subtle zoom-out on each slide */
+/* Hero carousel: refined, subtle crossfade + gentle zoom-out */
 .hero-carousel .hero-slide,
 .hero-carousel .hero-image,
 .hero-carousel .slide {
-  transition: opacity 1.2s ease-in-out;
+  opacity: 0;
+  transition:
+    opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 10s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .hero-carousel .hero-slide.is-active,
 .hero-carousel .hero-image.is-active,
 .hero-carousel .slide.is-active {
-  animation: heroSubtleZoomOut 10s ease-out forwards;
+  opacity: 1;
+  animation: heroSubtleZoomOut 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes heroSubtleZoomOut {
   from {
-    transform: scale(1.045);
+    transform: scale(1.035);
   }
   to {
     transform: scale(1);
@@ -1283,6 +1288,6 @@ section { position: relative; }
   .hero-carousel .hero-image,
   .hero-carousel .slide {
     animation: none !important;
-    transition: opacity 0.2s linear !important;
+    transition: opacity 0.25s linear !important;
   }
 }
