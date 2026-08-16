@@ -237,6 +237,14 @@ body.home-page .site-header.menu-open {
 .menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
 .menu-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
 
+
+/* Active navigation item is black whenever the header has a white background. */
+.site-header.is-scrolled .main-nav a[aria-current="page"],
+.site-header.is-solid .main-nav a[aria-current="page"],
+.site-header.menu-open .main-nav a[aria-current="page"] {
+  color: #000;
+}
+
 /* Header variant on the landing-page hero:
    transparent with automatic contrast against the hero image.
    mix-blend-mode:difference makes the white navigation invert where
