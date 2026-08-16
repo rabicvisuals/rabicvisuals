@@ -1679,3 +1679,107 @@ section { position: relative; }
     width: calc(100% - 36px);
   }
 }
+
+
+/* RabicVisuals luxury cream secondary palette */
+:root {
+  --rv-primary: #ffffff;
+  --rv-cream: #e8dfd2;
+  --rv-cream-deep: #cfc2b2;
+  --rv-ink: #171614;
+}
+
+/* Subtle cream treatment for selected non-hero sections */
+.rv-intro,
+.rv-section-cream {
+  background: var(--rv-cream);
+}
+
+/* Keep typography crisp against the cream background */
+.rv-intro,
+.rv-section-cream {
+  color: var(--rv-ink);
+}
+
+/* Footer logo uses the same header logo, scaled down */
+.rv-footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.rv-footer-logo-link img {
+  display: block;
+  width: auto;
+  max-width: 132px;
+  max-height: 34px;
+  object-fit: contain;
+}
+
+.rv-footer-logo-link svg {
+  width: auto;
+  max-width: 132px;
+  max-height: 34px;
+}
+
+.rv-footer-logo-text {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+/* Luxury cream accents for interactive elements */
+.rv-footer-nav a:hover,
+.rv-footer-contact a:hover {
+  color: var(--rv-cream);
+}
+
+@media (max-width: 760px) {
+  .rv-footer-logo-link img,
+  .rv-footer-logo-link svg {
+    max-width: 116px;
+    max-height: 30px;
+  }
+}
+
+
+/* Invert header logo specifically for the dark footer */
+.rv-footer-logo-link img,
+.rv-footer-logo-link svg {
+  filter: brightness(0) invert(1);
+}
+
+
+/* Luxury dark-brown footer */
+.rv-footer {
+  background: #2B211B;
+  color: rgba(255,255,255,.88);
+}
+
+.rv-footer-logo-link img,
+.rv-footer-logo-link svg {
+  filter: brightness(0) invert(1);
+}
+
+.rv-footer-nav a,
+.rv-footer-contact a {
+  color: rgba(255,255,255,.76);
+}
+
+.rv-footer-nav a:hover,
+.rv-footer-contact a:hover {
+  color: #E8DFD2;
+}
+
+.rv-footer-brand p {
+  color: rgba(255,255,255,.48);
+}
+
+.rv-footer-contact span {
+  color: rgba(255,255,255,.38);
+}
+
+.rv-footer::after {
+  background: rgba(255,255,255,.12);
+}
