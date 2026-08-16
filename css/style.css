@@ -1312,3 +1312,57 @@ section { position: relative; }
     transform: none !important;
   }
 }
+
+/* Dynamic editorial tiles */
+.rv-home{background:#fff;color:#111}
+.rv-intro{min-height:78vh;padding:clamp(140px,18vw,240px) clamp(24px,7vw,110px) 120px;display:flex;flex-direction:column;justify-content:center}
+.rv-intro small,.rv-closing small{font-size:.7rem;letter-spacing:.18em}
+.rv-intro h1{margin:28px 0 0;max-width:1000px;font-size:clamp(3.4rem,8vw,8.5rem);line-height:.91;letter-spacing:-.045em;font-weight:350}
+.rv-intro h1 em{font-style:normal;font-weight:300}.rv-intro p{max-width:520px;margin:42px 0 0;font-size:1.1rem;line-height:1.7;font-weight:350}
+.rv-tile-grid{width:min(1400px,calc(100% - 48px));margin:auto;display:grid;grid-template-columns:1.35fr .8fr 1fr;grid-template-rows:minmax(320px,38vw) minmax(260px,30vw);gap:clamp(12px,1.5vw,24px);padding-bottom:160px}
+.rv-tile{position:relative;overflow:hidden;display:block;color:#fff;text-decoration:none;isolation:isolate;background:#ddd}
+.rv-tile-1{grid-column:1/3}.rv-tile-2{grid-column:3}.rv-tile-3{grid-column:1;grid-row:2}.rv-tile-4{grid-column:2/4;grid-row:2}
+.rv-tile-image{position:absolute;inset:0;background-position:center;background-size:cover;transition:transform 1s cubic-bezier(.22,1,.36,1);z-index:-3}
+.rv-tile-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.58));z-index:-2;transition:opacity .6s}.rv-tile-copy{position:absolute;left:28px;right:28px;bottom:28px;display:grid;grid-template-columns:1fr auto;align-items:end}.rv-tile-copy small{grid-column:1/-1;letter-spacing:.16em;font-size:.68rem;margin-bottom:12px}.rv-tile-copy strong{font-size:clamp(1.8rem,3vw,3.5rem);font-weight:350;line-height:1}.rv-tile-copy i{font-style:normal;font-size:1.5rem;transition:transform .5s}.rv-tile:hover .rv-tile-image{transform:scale(1.055)}.rv-tile:hover .rv-tile-overlay{opacity:.85}.rv-tile:hover .rv-tile-copy i{transform:translate(5px,-5px)}
+.rv-closing{padding:160px clamp(24px,7vw,110px);border-top:1px solid #ddd}.rv-closing h2{max-width:900px;font-size:clamp(2.7rem,6vw,6.5rem);line-height:.94;letter-spacing:-.045em;font-weight:350;margin:28px 0 50px}.rv-closing a{color:#111;text-decoration:none;border-bottom:1px solid #111;padding-bottom:8px}
+@media(max-width:800px){.rv-intro{min-height:70vh}.rv-tile-grid{width:calc(100% - 32px);grid-template-columns:1fr 1fr;grid-template-rows:62vw 48vw 62vw}.rv-tile-1{grid-column:1/-1;grid-row:1}.rv-tile-2{grid-column:1;grid-row:2}.rv-tile-3{grid-column:2;grid-row:2}.rv-tile-4{grid-column:1/-1;grid-row:3}}
+@media(max-width:520px){.rv-intro h1{font-size:15vw}.rv-tile-grid{width:calc(100% - 24px);grid-template-columns:1fr;grid-template-rows:100vw 78vw 78vw 100vw}.rv-tile-1,.rv-tile-2,.rv-tile-3,.rv-tile-4{grid-column:1}.rv-tile-1{grid-row:1}.rv-tile-2{grid-row:2}.rv-tile-3{grid-row:3}.rv-tile-4{grid-row:4}}
+
+
+/* Restored RabicVisuals hero banner */
+.rv-hero-banner {
+  position: relative;
+  width: 100%;
+  height: :100vh;
+  min-height: :100vh;
+  overflow: hidden;
+  background: #111;
+}
+
+.rv-hero-banner-image {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.025);
+  animation: rvHeroZoomOut 10s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes rvHeroZoomOut {
+  from { transform: scale(1.025); }
+  to { transform: scale(1); }
+}
+
+@media (max-width: 800px) {
+  .rv-hero-banner {
+    height: 100svh;
+    min-height: 100svh;
+  }
+}
+
+@media (max-width: 520px) {
+  .rv-hero-banner {
+    height: 100svh;
+    min-height: 100svh;
+  }
+}
