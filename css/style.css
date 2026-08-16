@@ -1256,18 +1256,24 @@ section { position: relative; }
 }
 
 
-/* Hero carousel: soft cinematic blur transition + subtle zoom-out */
+/* Hero carousel: seamless blur blend between images — no black fade */
+.hero-carousel {
+  background: transparent !important;
+  overflow: hidden;
+}
+
 .hero-carousel .hero-slide,
 .hero-carousel .hero-image,
 .hero-carousel .slide {
   opacity: 0;
-  filter: blur(8px);
-  transform: scale(1.035);
+  filter: blur(7px);
+  transform: scale(1.025);
   transition:
     opacity 1.45s cubic-bezier(0.22, 1, 0.36, 1),
     filter 1.45s cubic-bezier(0.22, 1, 0.36, 1),
     transform 10s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, filter, transform;
+  background: transparent !important;
 }
 
 .hero-carousel .hero-slide.is-active,
@@ -1276,15 +1282,24 @@ section { position: relative; }
   opacity: 1;
   filter: blur(0);
   animation: heroSubtleZoomOut 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  z-index: 2;
 }
 
 @keyframes heroSubtleZoomOut {
   from {
-    transform: scale(1.035);
+    transform: scale(1.025);
   }
   to {
     transform: scale(1);
   }
+}
+
+/* Keep the previous image underneath during a transition instead of exposing
+   the carousel/background color. */
+.hero-carousel .hero-slide:not(.is-active),
+.hero-carousel .hero-image:not(.is-active),
+.hero-carousel .slide:not(.is-active) {
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
