@@ -136,6 +136,19 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid var(--color-line);
 }
 
+body.home-page .site-header {
+  background: transparent;
+  color: var(--color-ink);
+  border-bottom-color: transparent;
+}
+
+body.home-page .site-header.is-scrolled,
+body.home-page .site-header.menu-open {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border-bottom-color: var(--color-line);
+}
+
 .site-header .container {
   display: flex;
   align-items: center;
@@ -369,13 +382,6 @@ h1, h2, h3, h4 {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-}
-
-.hero-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(24,22,15,0.15) 0%, rgba(24,22,15,0.12) 40%, rgba(24,22,15,0.86) 100%);
 }
 
 .hero-content {
