@@ -1783,3 +1783,61 @@ section { position: relative; }
 .rv-footer::after {
   background: rgba(255,255,255,.12);
 }
+
+
+/* Final monochrome palette: white primary + white secondary */
+:root {
+  --rv-primary: #ffffff;
+  --rv-cream: #ffffff;
+  --rv-cream-deep: #ffffff;
+  --rv-ink: #111111;
+}
+
+/* Black footer with white logo */
+.rv-footer {
+  background: #000000;
+  color: rgba(255,255,255,.88);
+}
+
+.rv-footer-logo-link img,
+.rv-footer-logo-link svg {
+  filter: brightness(0) invert(1);
+}
+
+.rv-footer-nav a,
+.rv-footer-contact a {
+  color: rgba(255,255,255,.76);
+}
+
+.rv-footer-nav a:hover,
+.rv-footer-contact a:hover {
+  color: #ffffff;
+}
+
+.rv-footer-brand p {
+  color: rgba(255,255,255,.48);
+}
+
+.rv-footer-contact span {
+  color: rgba(255,255,255,.38);
+}
+
+.rv-footer::after {
+  background: rgba(255,255,255,.12);
+}
+
+/* Final footer logo: use the black source asset and invert it to pure white. */
+.rv-footer .rv-footer-logo-link {
+  display: inline-flex !important;
+  align-items: center;
+  color: #fff !important;
+  text-decoration: none;
+}
+.rv-footer .rv-footer-logo {
+  display: block !important;
+  width: 128px !important;
+  height: auto !important;
+  max-width: none !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: 1 !important;
+}
