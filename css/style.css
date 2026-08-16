@@ -1256,21 +1256,25 @@ section { position: relative; }
 }
 
 
-/* Hero carousel: refined, subtle crossfade + gentle zoom-out */
+/* Hero carousel: soft cinematic blur transition + subtle zoom-out */
 .hero-carousel .hero-slide,
 .hero-carousel .hero-image,
 .hero-carousel .slide {
   opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.035);
   transition:
-    opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.45s cubic-bezier(0.22, 1, 0.36, 1),
     transform 10s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+  will-change: opacity, filter, transform;
 }
 
 .hero-carousel .hero-slide.is-active,
 .hero-carousel .hero-image.is-active,
 .hero-carousel .slide.is-active {
   opacity: 1;
+  filter: blur(0);
   animation: heroSubtleZoomOut 10s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -1289,5 +1293,7 @@ section { position: relative; }
   .hero-carousel .slide {
     animation: none !important;
     transition: opacity 0.25s linear !important;
+    filter: none !important;
+    transform: none !important;
   }
 }
