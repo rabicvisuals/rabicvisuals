@@ -1241,3 +1241,16 @@ section { position: relative; }
 .site-header.on-dark:not(.is-scrolled):hover .nav-links a[aria-current="page"]::after {
   background: #111111;
 }
+
+
+/* FINAL OVERRIDE: on the homepage, when the transparent header is hovered,
+   the active navigation item must switch from white to black. */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a[aria-current="page"],
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active {
+  color: #000 !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a[aria-current="page"]::after,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active::after {
+  background-color: #000 !important;
+}
