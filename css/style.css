@@ -254,6 +254,21 @@ body.home-page .site-header.menu-open {
   filter: brightness(0) invert(1);
 }
 
+/* Hovering over the transparent landing-page header makes it white. */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .brand-logo {
+  filter: brightness(0);
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .nav-toggle span {
+  background: var(--color-ink);
+}
+
 /* Once the landing page is scrolled, return to the normal white header. */
 .site-header.on-dark.is-scrolled {
   background: var(--color-bg);
