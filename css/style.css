@@ -1329,40 +1329,149 @@ section { position: relative; }
 @media(max-width:520px){.rv-intro h1{font-size:15vw}.rv-tile-grid{width:calc(100% - 24px);grid-template-columns:1fr;grid-template-rows:100vw 78vw 78vw 100vw}.rv-tile-1,.rv-tile-2,.rv-tile-3,.rv-tile-4{grid-column:1}.rv-tile-1{grid-row:1}.rv-tile-2{grid-row:2}.rv-tile-3{grid-row:3}.rv-tile-4{grid-row:4}}
 
 
-/* Restored RabicVisuals hero banner */
-.rv-hero-banner {
-  position: relative;
-  width: 100%;
-  height: :100vh;
-  min-height: :100vh;
-  overflow: hidden;
-  background: #111;
-}
 
-.rv-hero-banner-image {
-  position: absolute;
-  inset: 0;
-  background-position: center;
-  background-size: cover;
-  transform: scale(1.025);
-  animation: rvHeroZoomOut 10s cubic-bezier(.22,1,.36,1) forwards;
-}
 
-@keyframes rvHeroZoomOut {
-  from { transform: scale(1.025); }
-  to { transform: scale(1); }
+
+/* Photobooth tile intentionally has no background image */
+.rv-tile-4 .rv-tile-image-empty {
+  background-image: none !important;
+  background: transparent !important;
 }
 
 @media (max-width: 800px) {
   .rv-hero-banner {
     height: 100svh;
-    min-height: 100svh;
+    min-height: 0;
   }
 }
 
 @media (max-width: 520px) {
   .rv-hero-banner {
     height: 100svh;
-    min-height: 100svh;
+    min-height: 0;
   }
+}
+
+
+/* Fullscreen six-image hero carousel */
+.rv-hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #111;
+}
+
+.rv-carousel-track {
+  position: absolute;
+  inset: 0;
+}
+
+.rv-carousel-slide {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transform: scale(1.045);
+  filter: blur(0);
+  transition:
+    opacity 1.35s cubic-bezier(.22,1,.36,1),
+    filter 1.35s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+}
+
+.rv-carousel-slide.is-active {
+  opacity: 1;
+  filter: blur(0);
+  animation: rvCarouselZoomOut 10s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes rvCarouselZoomOut {
+  from { transform: scale(1.045); }
+  to { transform: scale(1); }
+}
+
+/* Cross-blur effect: the outgoing image softly blurs while the incoming image resolves. */
+.rv-carousel-slide:not(.is-active) {
+  filter: blur(8px);
+  transform: scale(1.02);
+}
+
+.rv-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: .78;
+  transition: opacity .25s ease, transform .25s ease;
+  text-shadow: 0 1px 8px rgba(0,0,0,.28);
+}
+
+.rv-carousel-arrow:hover {
+  opacity: 1;
+}
+
+.rv-carousel-prev { left: 24px; }
+.rv-carousel-next { right: 24px; }
+
+.rv-carousel-arrow span {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.rv-carousel-dots {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.rv-carousel-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  opacity: .75;
+  transition: transform .25s ease, background-color .25s ease, opacity .25s ease;
+}
+
+.rv-carousel-dot.is-active {
+  background: #fff;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@media (max-width: 800px) {
+  .rv-carousel-arrow {
+    width: 42px;
+    height: 42px;
+  }
+  .rv-carousel-prev { left: 12px; }
+  .rv-carousel-next { right: 12px; }
+  .rv-carousel-dots { bottom: 22px; }
+}
+
+/* Remove excessive whitespace directly after the hero. */
+.rv-hero-carousel + .rv-intro {
+  margin-top: 0 !important;
+  padding-top: clamp(36px, 5vw, 72px);
 }
