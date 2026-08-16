@@ -238,12 +238,20 @@ body.home-page .site-header.menu-open {
 .menu-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
 
 /* Header variant on the landing-page hero:
-   transparent with light navigation until the page is scrolled. */
+   transparent with automatic contrast against the hero image.
+   mix-blend-mode:difference makes the white navigation invert where
+   the underlying image is light, while remaining white over dark areas. */
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) {
   color: #fff;
   background: transparent;
   border-bottom-color: transparent;
   box-shadow: none;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .brand-logo,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .nav-toggle {
+  mix-blend-mode: difference;
 }
 
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .nav-toggle span {
@@ -254,11 +262,18 @@ body.home-page .site-header.menu-open {
   filter: brightness(0) invert(1);
 }
 
-/* Hovering over the transparent landing-page header makes it white. */
+/* Hovering over the transparent landing-page header makes it white.
+   Disable the contrast blend so the normal dark navigation is shown. */
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover {
   background: var(--color-bg);
   color: var(--color-ink);
   border-bottom: 1px solid var(--color-line);
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .brand-logo,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .nav-toggle {
+  mix-blend-mode: normal;
 }
 
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .brand-logo {
