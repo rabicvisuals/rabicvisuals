@@ -1254,3 +1254,35 @@ section { position: relative; }
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active::after {
   background-color: #000 !important;
 }
+
+
+/* Hero carousel: elegant crossfade + subtle zoom-out on each slide */
+.hero-carousel .hero-slide,
+.hero-carousel .hero-image,
+.hero-carousel .slide {
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-carousel .hero-slide.is-active,
+.hero-carousel .hero-image.is-active,
+.hero-carousel .slide.is-active {
+  animation: heroSubtleZoomOut 10s ease-out forwards;
+}
+
+@keyframes heroSubtleZoomOut {
+  from {
+    transform: scale(1.045);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel .hero-slide,
+  .hero-carousel .hero-image,
+  .hero-carousel .slide {
+    animation: none !important;
+    transition: opacity 0.2s linear !important;
+  }
+}

@@ -306,3 +306,31 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 })();
+
+
+/* Automatic hero rotation: 10 seconds per image */
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".hero-carousel");
+  if (!hero) return;
+
+  const slides = hero.querySelectorAll(".hero-slide, .hero-image, .slide");
+  const nextButton = hero.querySelector(
+    ".hero-next, .next, [data-next], button[aria-label*='Next'], button[aria-label*='next']"
+  );
+
+  if (!slides.length || !nextButton) return;
+
+  const restartZoom = () => {
+    slides.forEach(slide => slide.classList.remove("is-active"));
+    const active = hero.querySelector(".is-active");
+    if (active) {
+      void active.offsetWidth;
+      active.classList.add("is-active");
+    }
+  };
+
+  setInterval(() => {
+    nextButton.click();
+    setTimeout(restartZoom, 50);
+  }, 10000);
+});
