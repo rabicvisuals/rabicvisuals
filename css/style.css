@@ -1229,3 +1229,15 @@ section { position: relative; }
 }
 
 .mt-0 { margin-top: 0; }
+
+
+/* Landing-page transparent header: active nav becomes black when the header is hovered. */
+.site-header.on-dark:not(.is-scrolled):hover .nav-links a.active,
+.site-header.on-dark:not(.is-scrolled):hover .nav-links a[aria-current="page"] {
+  color: #111111;
+}
+
+.site-header.on-dark:not(.is-scrolled):hover .nav-links a.active::after,
+.site-header.on-dark:not(.is-scrolled):hover .nav-links a[aria-current="page"]::after {
+  background: #111111;
+}
