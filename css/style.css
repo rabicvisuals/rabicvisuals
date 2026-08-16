@@ -258,6 +258,11 @@ body.home-page .site-header.menu-open {
   background: #fff;
 }
 
+/* Active navigation item stays white while the homepage header is transparent. */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a[aria-current="page"] {
+  color: #fff;
+}
+
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .brand-logo {
   filter: brightness(0) invert(1);
 }
