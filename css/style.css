@@ -1559,3 +1559,123 @@ section { position: relative; }
     min-height: 100svh;
   }
 }
+
+
+/* Minimal elegant global footer */
+.rv-footer {
+  width: 100%;
+  background: #111;
+  color: rgba(255,255,255,.88);
+  margin-top: 0;
+}
+
+.rv-footer-inner {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 58px 0 28px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 48px;
+}
+
+.rv-footer-brand {
+  text-align: left;
+}
+
+.rv-footer-logo {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  transition: opacity .25s ease;
+}
+
+.rv-footer-logo:hover {
+  opacity: .65;
+}
+
+.rv-footer-brand p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.48);
+}
+
+.rv-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px;
+  padding-top: 4px;
+}
+
+.rv-footer-nav a,
+.rv-footer-contact a {
+  color: rgba(255,255,255,.72);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color .25s ease, opacity .25s ease;
+}
+
+.rv-footer-nav a:hover,
+.rv-footer-contact a:hover {
+  color: #fff;
+}
+
+.rv-footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  font-size: 12px;
+}
+
+.rv-footer-contact span {
+  color: rgba(255,255,255,.38);
+  font-size: 11px;
+  letter-spacing: .03em;
+}
+
+.rv-footer::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: min(1180px, calc(100% - 48px));
+  margin: -1px auto 0;
+  background: rgba(255,255,255,.10);
+}
+
+@media (max-width: 760px) {
+  .rv-footer-inner {
+    width: min(100% - 36px, 520px);
+    padding: 44px 0 24px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .rv-footer-brand,
+  .rv-footer-contact {
+    text-align: center;
+    align-items: center;
+  }
+
+  .rv-footer-nav {
+    gap: 16px 22px;
+    padding-top: 0;
+  }
+
+  .rv-footer-nav a,
+  .rv-footer-contact a {
+    font-size: 13px;
+  }
+
+  .rv-footer::after {
+    width: calc(100% - 36px);
+  }
+}
