@@ -224,16 +224,31 @@ h1, h2, h3, h4 {
 .menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
 .menu-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
 
-/* Header variant on dark hero (transparent, light text) */
+/* Header variant on the landing-page hero:
+   transparent with light navigation until the page is scrolled. */
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) {
-  color: var(--color-ink);
-  background: var(--color-bg);
-  border-bottom-color: var(--color-line);
+  color: #fff;
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
 }
+
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .nav-toggle span {
-  background: var(--color-ink);
+  background: #fff;
 }
+
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .brand-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* Once the landing page is scrolled, return to the normal white header. */
+.site-header.on-dark.is-scrolled {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-header.on-dark.is-scrolled .brand-logo {
   filter: brightness(0);
 }
 
