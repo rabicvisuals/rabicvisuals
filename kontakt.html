@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — RabicVisuals</title>
+  <meta name="description" content="Kontaktirajte RabicVisuals za poročno, portretno ali event fotografijo, ali za najem photobootha. Odgovorim na vsako povpraševanje.">
+  <link rel="canonical" href="https://www.rabicvisuals.com/kontakt.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RabicVisuals">
+  <meta property="og:title" content="Kontakt — RabicVisuals">
+  <meta property="og:description" content="Kontaktirajte RabicVisuals za poročno, portretno ali event fotografijo, ali za najem photobootha. Odgovorim na vsako povpraševanje.">
+  <meta property="og:image" content="https://www.rabicvisuals.com/images/hero/hero-home.jpg">
+  <meta property="og:url" content="https://www.rabicvisuals.com/kontakt.html">
+  <meta property="og:locale" content="sl_SI">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kontakt — RabicVisuals">
+  <meta name="twitter:description" content="Kontaktirajte RabicVisuals za poročno, portretno ali event fotografijo, ali za najem photobootha. Odgovorim na vsako povpraševanje.">
+  <meta name="twitter:image" content="https://www.rabicvisuals.com/images/hero/hero-home.jpg">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Preskoči na vsebino</a>
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">RabicVisuals</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Odpri meni" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Glavna navigacija">
+        <ul>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="o-meni.html">O meni</a></li>
+          <li><a href="galerija.html">Galerija</a></li>
+          <li><a href="photobooth.html">Photobooth</a></li>
+          <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section contact-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Povpraševanje</span>
+        <h1 class="reveal">Kontakt</h1>
+        <p class="reveal">Načrtujete poroko, dogodek ali fotografiranje? Pišite mi in skupaj bomo našli najboljšo rešitev.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:clamp(1.5rem,4vw,2.5rem);">
+      <div class="container contact-grid">
+        <!--
+          Form wiring:
+          This form is presentational only and does not send data anywhere yet.
+          To connect it, either:
+          1) Formspree — set the form action to your Formspree endpoint, e.g.
+             <form class="contact-form" action="https://formspree.io/f/xxxxxxx" method="POST">
+             and remove/adjust the JS preventDefault in js/script.js.
+          2) Web3Forms — add a hidden input with your access key:
+             <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+             and point the form action to https://api.web3forms.com/submit
+        -->
+        <form class="contact-form reveal" action="#" method="POST" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="fullname">Ime in priimek</label>
+              <input type="text" id="fullname" name="fullname" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">E-pošta</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="event-date">Datum dogodka</label>
+              <input type="date" id="event-date" name="event-date">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="shoot-type">Vrsta fotografiranja</label>
+            <select id="shoot-type" name="shoot-type" required>
+              <option value="" disabled selected>Izberite možnost</option>
+              <option value="poroka">Poroka</option>
+              <option value="portret">Portret</option>
+              <option value="dogodek">Dogodek</option>
+              <option value="photobooth">Photobooth</option>
+              <option value="drugo">Drugo</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Sporočilo</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Pošlji povpraševanje</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">Obrazec trenutno ni povezan s pošiljanjem e-pošte. Za delovanje ga povežite s storitvijo Formspree ali Web3Forms.</p>
+        </form>
+
+        <div class="contact-info reveal">
+          <div class="info-block">
+            <h3>E-pošta</h3>
+            <a href="mailto:hello@rabicvisuals.com">hello@rabicvisuals.com</a>
+          </div>
+          <div class="info-block">
+            <h3>Instagram</h3>
+            <a href="https://instagram.com/rabicvisuals" target="_blank" rel="noopener">@rabicvisuals</a>
+          </div>
+          <div class="info-block">
+            <h3>Lokacija</h3>
+            <p>Slovenija &middot; na voljo za potovanja</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">RabicVisuals</a>
+          <p>Fotografija, ki ohrani občutek trenutka.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="index.html">Domov</a></li>
+            <li><a href="o-meni.html">O meni</a></li>
+            <li><a href="galerija.html">Galerija</a></li>
+            <li><a href="photobooth.html">Photobooth</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Povezave</h4>
+          <ul>
+            <li><a href="https://instagram.com/rabicvisuals" target="_blank" rel="noopener">Instagram @rabicvisuals</a></li>
+            <li><a href="mailto:hello@rabicvisuals.com">hello@rabicvisuals.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="hairline">
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> RabicVisuals. Vse pravice pridržane.</p>
+        <p>Fotografija &amp; Photobooth &middot; Slovenija</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
