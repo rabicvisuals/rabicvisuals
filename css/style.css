@@ -8,8 +8,8 @@
    ------------------------------------------------------------------------- */
 :root {
   /* Colour — warm, restrained, never pure neutral */
-  --color-bg: #F5F1EA;
-  --color-bg-raised: #ECE5D8;
+  --color-bg: #FFFFFF;
+  --color-bg-raised: #FAFAF8;
   --color-ink: #18160F;
   --color-charcoal: #322D24;
   --color-stone: #857A69;
