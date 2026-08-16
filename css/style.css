@@ -1841,3 +1841,27 @@ section { position: relative; }
   filter: brightness(0) invert(1) !important;
   opacity: 1 !important;
 }
+
+
+/* Carousel controls: hidden until desktop mouse hover */
+@media (hover: hover) and (pointer: fine) {
+  .rv-hero-carousel .rv-carousel-arrow,
+  .rv-hero-carousel .rv-carousel-dots {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity .35s ease,
+      visibility 0s linear .35s;
+  }
+
+  .rv-hero-carousel:hover .rv-carousel-arrow,
+  .rv-hero-carousel:hover .rv-carousel-dots {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity .35s ease,
+      visibility 0s linear 0s;
+  }
+}
