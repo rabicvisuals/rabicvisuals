@@ -69,4 +69,4 @@ Vse besedilo je neposredno v HTML datotekah — ni potrebe po CMS-ju ali predlog
 - Zamenjajte `https://www.rabicvisuals.com` v `<head>` vsake strani, v `sitemap.xml` in `robots.txt` z dejansko domeno.
 - Zamenjajte placeholder fotografije s pravimi.
 - Povežite kontaktni obrazec (glej zgoraj).
-- Preverite `hello@rabicvisuals.com` in Instagram povezavo v `kontakt.html` in nogi strani.
+- Preverite `info@rabicvisuals.com` in Instagram povezavo v `kontakt.html` in nogi strani.
