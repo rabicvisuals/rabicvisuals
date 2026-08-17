@@ -283,21 +283,66 @@
       if (e.key === "ArrowRight") nextHeroSlide();
     });
   }
-
   /* ---------------------------------------------------------------------
-     Contact form (front-end only — connect to Formspree / Web3Forms later)
+     Contact form — Formspree
      --------------------------------------------------------------------- */
   var contactForm = document.querySelector(".contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
+    contactForm.addEventListener("submit", async function (e) {
       e.preventDefault();
+
       var status = contactForm.querySelector(".form-status");
+      var submitButton = contactForm.querySelector('button[type="submit"]');
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Pošiljanje...";
+      }
+
       if (status) {
-        status.textContent = "Obrazec še ni povezan s storitvijo za pošiljanje. Poveži ga s storitvijo kot je Formspree ali Web3Forms, da bodo povpraševanja prihajala na tvoj e-poštni naslov.";
-        status.classList.add("is-visible");
+        status.textContent = "";
+        status.classList.remove("is-visible", "is-error", "is-success");
+      }
+
+      try {
+        var response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          if (status) {
+            status.textContent = "Hvala! Vaše povpraševanje je bilo uspešno poslano.";
+            status.classList.add("is-visible", "is-success");
+          }
+        } else {
+          if (status) {
+            status.textContent = "Pri pošiljanju je prišlo do napake. Poskusite ponovno.";
+            status.classList.add("is-visible", "is-error");
+          }
+        }
+      } catch (error) {
+        if (status) {
+          status.textContent = "Pri pošiljanju je prišlo do napake. Poskusite ponovno.";
+          status.classList.add("is-visible", "is-error");
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Pošlji povpraševanje";
+        }
       }
     });
   }
+
+
 
   /* ---------------------------------------------------------------------
      Footer year

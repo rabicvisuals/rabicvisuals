@@ -63,20 +63,8 @@
 
     <section class="section" style="padding-top:clamp(1.5rem,4vw,2.5rem);">
       <div class="container contact-grid">
-        <!--
-          Form wiring:
-          This form is presentational only and does not send data anywhere yet.
-          To connect it, either:
-          1) Formspree — set the form action to your Formspree endpoint, e.g.
-             <form class="contact-form" action="https://formspree.io/f/mgawnqnp" method="POST" id="contact-form">
-    <input type="hidden" name="_subject" value="Novo povpraševanje - RabicVisuals">
-
-and remove/adjust the JS preventDefault in js/script.js.
-          2) Web3Forms — add a hidden input with your access key:
-             <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-             and point the form action to https://api.web3forms.com/submit
-        -->
-        <form class="contact-form reveal" action="#" method="POST" novalidate>
+<form class="contact-form reveal" action="https://formspree.io/f/mgawnqnp" method="POST" id="contact-form">
+          <input type="hidden" name="_subject" value="Novo povpraševanje - RabicVisuals">
           <div class="field-row">
             <div class="field">
               <label for="fullname">Ime in priimek</label>
@@ -120,7 +108,7 @@ and remove/adjust the JS preventDefault in js/script.js.
 
           <button type="submit" class="btn btn-primary">Pošlji povpraševanje</button>
           
-          <p class="form-note">Obrazec trenutno ni povezan s pošiljanjem e-pošte. Za delovanje ga povežite s storitvijo Formspree ali Web3Forms.</p>
+          <p class="form-status" aria-live="polite"></p>
         </form>
 
         <div class="contact-info reveal">
