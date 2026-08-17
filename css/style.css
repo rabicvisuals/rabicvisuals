@@ -1977,3 +1977,20 @@ section { position: relative; }
     opacity: 1 !important;
   }
 }
+
+
+/* Contact form status */
+.form-status {
+  margin-top: 16px;
+  min-height: 1.4em;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form-status.is-success {
+  color: #1f6b3a;
+}
+
+.form-status.is-error {
+  color: #9b2c2c;
+}
