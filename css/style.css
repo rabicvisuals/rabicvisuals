@@ -1865,3 +1865,90 @@ section { position: relative; }
       visibility 0s linear 0s;
   }
 }
+
+
+/* Mobile-only refinements — desktop remains unchanged */
+.mobile-menu-brand { display: none; }
+
+@media (max-width: 860px) {
+  /* Center the header logo independently of the menu button. */
+  .site-header .container {
+    position: relative;
+    width: 100%;
+  }
+  .site-header .brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 105;
+  }
+  .site-header .nav-toggle {
+    margin-left: auto;
+  }
+
+  /* Put a centered logo above the links in the full-screen mobile menu. */
+  .main-nav {
+    flex-direction: column;
+    gap: 3rem;
+    padding: calc(var(--header-h) + 2rem) 24px 3rem;
+  }
+  .mobile-menu-brand {
+    display: block;
+    width: min(190px, 52vw);
+    flex: 0 0 auto;
+  }
+  .mobile-menu-brand img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: brightness(0);
+  }
+
+  /* Touch devices use swipe instead of arrow buttons. */
+  .rv-hero-carousel .rv-carousel-arrow {
+    display: none !important;
+  }
+  .rv-hero-carousel {
+    touch-action: pan-y;
+  }
+
+  /* The first landscape image should not feel excessively cropped/zoomed. */
+  .rv-carousel-slide:first-child {
+    background-size: contain !important;
+    background-repeat: no-repeat;
+    background-position: center center !important;
+    background-color: #111;
+  }
+
+  /* Keep the Contact page strictly inside the mobile viewport. */
+  body,
+  .contact-hero,
+  .contact-grid,
+  .contact-form,
+  .contact-info {
+    max-width: 100%;
+  }
+  body { overflow-x: hidden; }
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    min-width: 0;
+  }
+  .contact-grid > *,
+  .contact-form,
+  .contact-info,
+  .field,
+  .field-row,
+  .field input,
+  .field select,
+  .field textarea {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .contact-info .info-block a,
+  .contact-info .info-block p {
+    overflow-wrap: anywhere;
+  }
+}

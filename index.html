@@ -39,6 +39,7 @@
         <span></span><span></span><span></span>
       </button>
       <nav class="main-nav" id="main-nav" aria-label="Glavna navigacija">
+        <a href="index.html" class="mobile-menu-brand" aria-label="RabicVisuals"><img src="images/logo/rabicvisuals-logo-black.png" alt="RabicVisuals"></a>
         <ul>
           <li><a href="index.html" aria-current="page">Domov</a></li>
           <li><a href="o-meni.html">O meni</a></li>
@@ -108,6 +109,30 @@
   prev?.addEventListener('click', () => { show(current - 1); restart(); });
   next?.addEventListener('click', () => { show(current + 1); restart(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restart(); }));
+
+  // Mobile swipe navigation.
+  const carousel = document.querySelector('.rv-hero-carousel');
+  let touchStartX = 0;
+  let touchStartY = 0;
+  if (carousel) {
+    carousel.addEventListener('touchstart', (e) => {
+      const t = e.changedTouches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      // Only treat a deliberate, mostly-horizontal gesture as a carousel swipe.
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+        show(current + (dx < 0 ? 1 : -1));
+        restart();
+      }
+    }, { passive: true });
+  }
+
   restart();
 })();
 </script>
