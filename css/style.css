@@ -1887,23 +1887,7 @@ section { position: relative; }
     margin-left: auto;
   }
 
-  /* Put a centered logo above the links in the full-screen mobile menu. */
-  .main-nav {
-    flex-direction: column;
-    gap: 3rem;
-    padding: calc(var(--header-h) + 2rem) 24px 3rem;
-  }
-  .mobile-menu-brand {
-    display: block;
-    width: min(190px, 52vw);
-    flex: 0 0 auto;
-  }
-  .mobile-menu-brand img {
-    display: block;
-    width: 100%;
-    height: auto;
-    filter: brightness(0);
-  }
+  
 
   /* Touch devices use swipe instead of arrow buttons. */
   .rv-hero-carousel .rv-carousel-arrow {
@@ -1950,5 +1934,46 @@ section { position: relative; }
   .contact-info .info-block a,
   .contact-info .info-block p {
     overflow-wrap: anywhere;
+  }
+}
+
+
+/* Mobile-only first hero slide and menu logo cleanup */
+@media (max-width: 800px) {
+  .rv-hero-carousel .rv-hero-slide:first-child,
+  .rv-hero-carousel .rv-carousel-slide:first-child,
+  .rv-hero-banner .rv-hero-slide:first-child,
+  .rv-hero-banner .rv-carousel-slide:first-child {
+    background-image: url('../images/hero/hero-slide-01-mobile.jpg') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+
+  /* Keep only the centered header logo; do not render an extra logo in the open menu. */
+  .mobile-menu-logo,
+  .rv-mobile-menu-logo {
+    display: none !important;
+  }
+}
+
+
+/* Mobile menu: use only the centered header logo; no duplicate logo inside menu */
+.mobile-menu-brand {
+  display: none !important;
+}
+
+@media (max-width: 800px) {
+  .site-header .brand {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1002 !important;
+  }
+
+  .site-header.menu-open .brand {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
