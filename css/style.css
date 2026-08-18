@@ -2146,3 +2146,39 @@ section { position: relative; }
 .rv-carousel-slide.is-active {
   animation-duration: 7s !important;
 }
+
+
+/* Transparent header: navigation links follow the same slide contrast as logo/hamburger */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a.active,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a[aria-current="page"] {
+  color: #fff !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a.active::after,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a[aria-current="page"]::after {
+  background-color: #fff !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a.active,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a[aria-current="page"] {
+  color: #111 !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a.active::after,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a[aria-current="page"]::after {
+  background-color: #111 !important;
+}
+
+/* When the landing header turns white on hover, links always become dark. */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a[aria-current="page"] {
+  color: #111 !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active::after,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a[aria-current="page"]::after {
+  background-color: #111 !important;
+}
