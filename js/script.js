@@ -405,9 +405,17 @@ document.addEventListener("DOMContentLoaded", function () {
     hero.classList.add("progress-running");
   }
 
+  var progressResetQueued = false;
   var observer = new MutationObserver(function () {
     syncHeader();
-    restartProgress();
+
+    if (!progressResetQueued) {
+      progressResetQueued = true;
+      requestAnimationFrame(function () {
+        restartProgress();
+        progressResetQueued = false;
+      });
+    }
   });
 
   hero.querySelectorAll(".rv-carousel-slide").forEach(function (slide) {

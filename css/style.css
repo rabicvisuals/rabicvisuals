@@ -2093,3 +2093,23 @@ section { position: relative; }
 .site-header.on-dark:hover .nav-toggle span {
   background: #111 !important;
 }
+
+
+/* Progress bar synchronization + refined appearance */
+.rv-carousel-progress {
+  height: 4px !important;
+  background: rgba(255,255,255,.10) !important;
+}
+
+.rv-carousel-progress span {
+  background: rgba(255,255,255,.48) !important;
+}
+
+.rv-hero-carousel.progress-running .rv-carousel-progress span {
+  animation: rvProgressSynced 5s linear forwards !important;
+}
+
+@keyframes rvProgressSynced {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
