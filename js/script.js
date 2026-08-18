@@ -354,3 +354,31 @@
 
 
 
+
+
+/* AUTHORITATIVE HEADER STATE SYNC */
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  function syncHeaderState() {
+    const isHomeOverlay = header.classList.contains("on-dark");
+    const isScrolled = header.classList.contains("is-scrolled");
+    const isMenuOpen = header.classList.contains("menu-open");
+    const isHovered = header.matches(":hover");
+
+    const transparent = isHomeOverlay && !isScrolled && !isMenuOpen && !isHovered;
+
+    header.classList.toggle("header-transparent", transparent);
+    header.classList.toggle("header-solid", !transparent);
+  }
+
+  syncHeaderState();
+
+  window.addEventListener("scroll", syncHeaderState, { passive: true });
+  header.addEventListener("mouseenter", syncHeaderState);
+  header.addEventListener("mouseleave", syncHeaderState);
+
+  const observer = new MutationObserver(syncHeaderState);
+  observer.observe(header, { attributes: true, attributeFilter: ["class"] });
+});

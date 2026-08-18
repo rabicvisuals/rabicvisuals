@@ -2066,14 +2066,6 @@ section { position: relative; }
       visibility 0s linear 0s;
   }
 }
-
-
-/* Once header is white (scroll/hover/menu), always use dark controls */
-.site-header.is-scrolled .brand img,
-.site-header.menu-open .brand img,
-.site-header.on-dark:hover .brand img {
-  filter: brightness(0) !important;
-}
 .site-header.is-scrolled .nav-toggle span,
 .site-header.menu-open .nav-toggle span,
 .site-header.on-dark:hover .nav-toggle span {
@@ -2147,16 +2139,6 @@ section { position: relative; }
   background-color: #111 !important;
 }
 
-
-/* FINAL HEADER COLOR BEHAVIOR
-   Transparent header = white logo, white navigation, white hamburger.
-   White/scrolled/hover/menu header = black logo, black navigation, black hamburger. */
-
-/* Transparent landing header */
-.site-header.on-dark:not(.is-scrolled):not(.menu-open) .brand img {
-  filter: brightness(0) invert(1) !important;
-}
-
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a,
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a.active,
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a[aria-current="page"] {
@@ -2170,13 +2152,6 @@ section { position: relative; }
 
 .site-header.on-dark:not(.is-scrolled):not(.menu-open) .nav-toggle span {
   background: #fff !important;
-}
-
-/* White header states */
-.site-header.is-scrolled .brand img,
-.site-header.menu-open .brand img,
-.site-header.on-dark:hover .brand img {
-  filter: brightness(0) !important;
 }
 
 .site-header.is-scrolled .main-nav a,
@@ -2206,23 +2181,6 @@ section { position: relative; }
   background: #111 !important;
 }
 
-
-/* FINAL FIX: logo is white only on transparent hero header, black on every white header state */
-
-/* Transparent header */
-.site-header.on-dark:not(.is-scrolled):not(.menu-open):not(:hover) .brand img {
-  filter: brightness(0) invert(1) !important;
-}
-
-/* White header: scroll, hover, open menu */
-.site-header.is-scrolled .brand img,
-.site-header.menu-open .brand img,
-.site-header.on-dark:hover .brand img,
-.site-header:not(.on-dark) .brand img {
-  filter: brightness(0) saturate(100%) !important;
-  opacity: 1 !important;
-}
-
 /* Inline SVG logo support */
 .site-header.is-scrolled .brand svg,
 .site-header.is-scrolled .brand svg *,
@@ -2243,4 +2201,50 @@ section { position: relative; }
   fill: #fff !important;
   stroke: #fff !important;
   color: #fff !important;
+}
+
+
+/* AUTHORITATIVE HEADER LOGO STATE */
+.site-header .brand-logo {
+  filter: brightness(0) !important;
+  transition: filter .25s ease;
+}
+
+.site-header.header-transparent .brand-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+.site-header.header-solid .brand-logo {
+  filter: brightness(0) !important;
+}
+
+/* Authoritative nav colors */
+.site-header.header-transparent .main-nav a,
+.site-header.header-transparent .main-nav a.active,
+.site-header.header-transparent .main-nav a[aria-current="page"] {
+  color: #fff !important;
+}
+
+.site-header.header-transparent .main-nav a.active::after,
+.site-header.header-transparent .main-nav a[aria-current="page"]::after {
+  background-color: #fff !important;
+}
+
+.site-header.header-solid .main-nav a,
+.site-header.header-solid .main-nav a.active,
+.site-header.header-solid .main-nav a[aria-current="page"] {
+  color: #111 !important;
+}
+
+.site-header.header-solid .main-nav a.active::after,
+.site-header.header-solid .main-nav a[aria-current="page"]::after {
+  background-color: #111 !important;
+}
+
+.site-header.header-transparent .nav-toggle span {
+  background: #fff !important;
+}
+
+.site-header.header-solid .nav-toggle span {
+  background: #111 !important;
 }
