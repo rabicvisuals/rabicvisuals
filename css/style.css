@@ -2478,3 +2478,29 @@ to   { transform: scale(1.03); }
     justify-content: center;
   }
 }
+
+
+/* Footer social layout refinement */
+.footer-social-icons {
+  width: 100%;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.footer-social-icons a {
+  width: 24px;
+  height: 24px;
+}
+
+/* Keep the icons visually grouped beneath the footer navigation */
+footer nav + .footer-social-icons {
+  display: flex;
+}
+
+@media (min-width: 769px) {
+  footer nav {
+    text-align: center;
+  }
+}
