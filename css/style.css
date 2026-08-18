@@ -2248,3 +2248,28 @@ section { position: relative; }
 .site-header.header-solid .nav-toggle span {
   background: #111 !important;
 }
+
+
+/* FINAL CAROUSEL CONTROLS HOVER DELAY
+   Appear 0.5s after hover; disappear 0.5s after mouse leaves. */
+@media (hover: hover) and (pointer: fine) {
+  .rv-hero-carousel .rv-carousel-arrow,
+  .rv-hero-carousel .rv-carousel-dots {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition:
+      opacity .35s ease .5s,
+      visibility 0s linear .85s !important;
+  }
+
+  .rv-hero-carousel:hover .rv-carousel-arrow,
+  .rv-hero-carousel:hover .rv-carousel-dots {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition:
+      opacity .35s ease .5s,
+      visibility 0s linear .5s !important;
+  }
+}
