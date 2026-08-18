@@ -2133,3 +2133,16 @@ section { position: relative; }
 .rv-carousel-slide.is-active {
   animation-duration: 7s !important;
 }
+
+
+/* FINAL authoritative carousel timing */
+.rv-carousel-progress {
+  height: 7px !important;
+  background: rgba(255,255,255,.10) !important;
+}
+.rv-carousel-progress span {
+  background: rgba(255,255,255,.48) !important;
+}
+.rv-carousel-slide.is-active {
+  animation-duration: 7s !important;
+}

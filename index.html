@@ -103,7 +103,7 @@
 
   function restart() {
     clearInterval(timer);
-    timer = setInterval(() => show(current + 1), 10000);
+    timer = setInterval(() => show(current + 1), 7000);
   }
 
   prev?.addEventListener('click', () => { show(current - 1); restart(); });
@@ -161,6 +161,95 @@
     </div>
   </div>
 </footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".rv-hero-carousel");
+  if (!hero) return;
+
+  const slides = Array.from(hero.querySelectorAll(".rv-carousel-slide"));
+  const dots = Array.from(hero.querySelectorAll(".rv-carousel-dot"));
+  const prev = hero.querySelector(".rv-carousel-prev");
+  const next = hero.querySelector(".rv-carousel-next");
+  const progress = hero.querySelector(".rv-carousel-progress span");
+  const header = document.querySelector(".site-header");
+
+  if (!slides.length) return;
+
+  const SLIDE_DURATION = 7000;
+  let current = Math.max(0, slides.findIndex(slide => slide.classList.contains("is-active")));
+  let timer = null;
+
+  function updateHeaderContrast() {
+    if (!header) return;
+    const theme = slides[current]?.dataset.header || "dark";
+    header.classList.toggle("hero-header-light", theme === "light");
+    header.classList.toggle("hero-header-dark", theme !== "light");
+  }
+
+  function restartProgress() {
+    if (!progress) return;
+    progress.style.animation = "none";
+    void progress.offsetWidth;
+    progress.style.animation = `rvProgressSeven ${SLIDE_DURATION}ms linear forwards`;
+  }
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("is-active", i === current);
+    });
+
+    dots.forEach((dot, i) => {
+      const active = i === current;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    updateHeaderContrast();
+    restartProgress();
+  }
+
+  function scheduleNext() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      show(current + 1);
+      scheduleNext();
+    }, SLIDE_DURATION);
+  }
+
+  function manualShow(index) {
+    show(index);
+    scheduleNext();
+  }
+
+  prev?.addEventListener("click", () => manualShow(current - 1));
+  next?.addEventListener("click", () => manualShow(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener("click", () => manualShow(i)));
+
+  let startX = 0;
+  let startY = 0;
+  hero.addEventListener("touchstart", (e) => {
+    if (!e.touches?.length) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  hero.addEventListener("touchend", (e) => {
+    if (!e.changedTouches?.length) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+      manualShow(current + (dx < 0 ? 1 : -1));
+    }
+  }, { passive: true });
+
+  show(current);
+  scheduleNext();
+});
+</script>
 
 </body>
 </html>
