@@ -1994,3 +1994,102 @@ section { position: relative; }
 .form-status.is-error {
   color: #9b2c2c;
 }
+
+
+/* FINAL CAROUSEL REFINEMENTS */
+.rv-carousel-slide {
+  opacity: 0;
+  filter: blur(5px);
+  transform: scale(1.026);
+  transition:
+    opacity 1.55s cubic-bezier(.22,1,.36,1),
+    filter 1.55s cubic-bezier(.22,1,.36,1);
+  will-change: opacity, filter, transform;
+}
+
+.rv-carousel-slide.is-active {
+  opacity: 1;
+  filter: blur(0);
+  animation: rvZoomOutFive 5s linear forwards !important;
+}
+
+@keyframes rvZoomOutFive {
+  from { transform: scale(1.026); }
+  to   { transform: scale(1); }
+}
+
+.rv-carousel-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,.18);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.rv-carousel-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: rgba(255,255,255,.72);
+}
+
+.rv-hero-carousel.progress-running .rv-carousel-progress span {
+  animation: rvProgressFive 5s linear forwards;
+}
+
+@keyframes rvProgressFive {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rv-hero-carousel .rv-carousel-arrow,
+  .rv-hero-carousel .rv-carousel-dots {
+    opacity: 0 !important;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity .8s cubic-bezier(.22,1,.36,1),
+      visibility 0s linear .8s;
+  }
+
+  .rv-hero-carousel:hover .rv-carousel-arrow,
+  .rv-hero-carousel:hover .rv-carousel-dots {
+    opacity: 1 !important;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity .8s cubic-bezier(.22,1,.36,1),
+      visibility 0s linear 0s;
+  }
+}
+
+/* Contrast changes only while the landing header is transparent */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .brand img {
+  filter: brightness(0) invert(1) !important;
+}
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .nav-toggle span {
+  background: #fff !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .brand img {
+  filter: brightness(0) !important;
+}
+.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .nav-toggle span {
+  background: #111 !important;
+}
+
+/* Once header is white (scroll/hover/menu), always use dark controls */
+.site-header.is-scrolled .brand img,
+.site-header.menu-open .brand img,
+.site-header.on-dark:hover .brand img {
+  filter: brightness(0) !important;
+}
+.site-header.is-scrolled .nav-toggle span,
+.site-header.menu-open .nav-toggle span,
+.site-header.on-dark:hover .nav-toggle span {
+  background: #111 !important;
+}

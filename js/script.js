@@ -377,5 +377,43 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
     nextButton.click();
     setTimeout(restartZoom, 50);
-  }, 10000);
+  }, 5000);
+});
+
+
+/* FINAL CAROUSEL HEADER/PROGRESS CONTROLLER */
+document.addEventListener("DOMContentLoaded", function () {
+  var hero = document.querySelector(".rv-hero-carousel");
+  var header = document.querySelector(".site-header");
+  if (!hero) return;
+
+  function activeSlide() {
+    return hero.querySelector(".rv-carousel-slide.is-active");
+  }
+
+  function syncHeader() {
+    if (!header) return;
+    var slide = activeSlide();
+    var theme = slide ? slide.getAttribute("data-header") : "dark";
+    header.classList.toggle("hero-header-light", theme === "light");
+    header.classList.toggle("hero-header-dark", theme !== "light");
+  }
+
+  function restartProgress() {
+    hero.classList.remove("progress-running");
+    void hero.offsetWidth;
+    hero.classList.add("progress-running");
+  }
+
+  var observer = new MutationObserver(function () {
+    syncHeader();
+    restartProgress();
+  });
+
+  hero.querySelectorAll(".rv-carousel-slide").forEach(function (slide) {
+    observer.observe(slide, { attributes: true, attributeFilter: ["class"] });
+  });
+
+  syncHeader();
+  restartProgress();
 });
