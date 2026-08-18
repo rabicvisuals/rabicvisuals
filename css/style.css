@@ -2504,3 +2504,51 @@ footer nav + .footer-social-icons {
     text-align: center;
   }
 }
+
+
+/* FINAL desktop footer alignment */
+@media (min-width: 769px) {
+  footer .footer-inner,
+  footer .footer-content {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    grid-template-rows: auto !important;
+    align-items: start !important;
+    column-gap: 70px !important;
+  }
+
+  footer .footer-brand {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: start !important;
+    align-self: start !important;
+  }
+
+  footer nav,
+  footer .footer-nav {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    align-self: start !important;
+    margin: 0 !important;
+  }
+
+  footer .footer-social-icons {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    align-self: start !important;
+    width: auto !important;
+    margin: 42px 0 0 0 !important;
+  }
+
+  footer .footer-contact,
+  footer .footer-meta {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: start !important;
+    text-align: right !important;
+    margin: 0 !important;
+  }
+}
