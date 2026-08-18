@@ -2113,3 +2113,23 @@ section { position: relative; }
   from { width: 0%; }
   to   { width: 100%; }
 }
+
+
+/* FINAL progress bar sizing and 7-second synchronization */
+.rv-carousel-progress {
+  height: 7px !important;
+}
+
+.rv-hero-carousel.progress-running .rv-carousel-progress span {
+  animation: rvProgressSeven 7s linear forwards !important;
+}
+
+@keyframes rvProgressSeven {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* Match the subtle zoom animation to the full slide duration */
+.rv-carousel-slide.is-active {
+  animation-duration: 7s !important;
+}

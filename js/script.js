@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
     nextButton.click();
     setTimeout(restartZoom, 50);
-  }, 5000);
+  }, 7000);
 });
 
 
