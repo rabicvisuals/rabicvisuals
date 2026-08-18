@@ -2349,3 +2349,29 @@ to   { transform: scale(1.03); }
   filter: blur(0);
   z-index: 2;
 }
+
+
+/* FINAL: static hero images, cross-blur transition only */
+.rv-carousel-slide,
+.rv-carousel-slide:nth-child(odd),
+.rv-carousel-slide:nth-child(even),
+.rv-carousel-slide.is-active,
+.rv-carousel-slide:nth-child(odd).is-active,
+.rv-carousel-slide:nth-child(even).is-active {
+  transform: scale(1) translateZ(0) !important;
+  animation: none !important;
+}
+
+.rv-carousel-slide {
+  opacity: 0;
+  filter: blur(4px);
+  transition:
+    opacity 1.35s cubic-bezier(.22,1,.36,1),
+    filter 1.35s cubic-bezier(.22,1,.36,1) !important;
+  will-change: opacity, filter;
+}
+
+.rv-carousel-slide.is-active {
+  opacity: 1;
+  filter: blur(0);
+}
