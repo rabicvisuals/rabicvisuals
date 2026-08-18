@@ -2205,3 +2205,42 @@ section { position: relative; }
 .site-header.on-dark:hover .nav-toggle span {
   background: #111 !important;
 }
+
+
+/* FINAL FIX: logo is white only on transparent hero header, black on every white header state */
+
+/* Transparent header */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):not(:hover) .brand img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* White header: scroll, hover, open menu */
+.site-header.is-scrolled .brand img,
+.site-header.menu-open .brand img,
+.site-header.on-dark:hover .brand img,
+.site-header:not(.on-dark) .brand img {
+  filter: brightness(0) saturate(100%) !important;
+  opacity: 1 !important;
+}
+
+/* Inline SVG logo support */
+.site-header.is-scrolled .brand svg,
+.site-header.is-scrolled .brand svg *,
+.site-header.menu-open .brand svg,
+.site-header.menu-open .brand svg *,
+.site-header.on-dark:hover .brand svg,
+.site-header.on-dark:hover .brand svg *,
+.site-header:not(.on-dark) .brand svg,
+.site-header:not(.on-dark) .brand svg * {
+  fill: #000 !important;
+  stroke: #000 !important;
+  color: #000 !important;
+}
+
+/* Transparent inline SVG logo */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):not(:hover) .brand svg,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open):not(:hover) .brand svg * {
+  fill: #fff !important;
+  stroke: #fff !important;
+  color: #fff !important;
+}
