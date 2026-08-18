@@ -2299,3 +2299,31 @@ section { position: relative; }
 .rv-hero-carousel.progress-running .rv-carousel-progress span {
   animation: none !important;
 }
+
+
+/* Alternating hero zoom direction:
+   1,3,5 = zoom out
+   2,4,6 = zoom in */
+.rv-carousel-slide:nth-child(odd).is-active {
+  animation-name: rvZoomOutFour !important;
+  animation-duration: 4s !important;
+  animation-timing-function: linear !important;
+  animation-fill-mode: forwards !important;
+}
+
+.rv-carousel-slide:nth-child(even).is-active {
+  animation-name: rvZoomInFour !important;
+  animation-duration: 4s !important;
+  animation-timing-function: linear !important;
+  animation-fill-mode: forwards !important;
+}
+
+@keyframes rvZoomOutFour {
+  from { transform: scale(1.03); }
+  to   { transform: scale(1); }
+}
+
+@keyframes rvZoomInFour {
+  from { transform: scale(1); }
+  to   { transform: scale(1.03); }
+}
