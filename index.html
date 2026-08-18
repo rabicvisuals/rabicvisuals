@@ -79,63 +79,7 @@
         <span class="rv-tile-image rv-tile-image-empty"></span><span class="rv-tile-overlay"></span><span class="rv-tile-copy"><small>PHOTObooth</small><strong>Photobooth</strong><i>↗</i></span></a></section><section class="rv-closing"><small>RABICVISUALS</small><h2>Vsak trenutek ima svojo zgodbo.</h2><a href="kontakt.html">Kontaktiraj me →</a></section></main>
 <script src="js/script.js"></script>
 
-<script>
-(() => {
-  const slides = [...document.querySelectorAll('.rv-carousel-slide')];
-  const dots = [...document.querySelectorAll('.rv-carousel-dot')];
-  const prev = document.querySelector('.rv-carousel-prev');
-  const next = document.querySelector('.rv-carousel-next');
-  if (!slides.length) return;
 
-  let current = 0;
-  let timer;
-
-  function show(index) {
-    const nextIndex = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === nextIndex));
-    dots.forEach((dot, i) => {
-      const active = i === nextIndex;
-      dot.classList.toggle('is-active', active);
-      dot.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    current = nextIndex;
-  }
-
-  function restart() {
-    clearInterval(timer);
-    timer = setInterval(() => show(current + 1), 7000);
-  }
-
-  prev?.addEventListener('click', () => { show(current - 1); restart(); });
-  next?.addEventListener('click', () => { show(current + 1); restart(); });
-  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); restart(); }));
-
-  // Mobile swipe navigation.
-  const carousel = document.querySelector('.rv-hero-carousel');
-  let touchStartX = 0;
-  let touchStartY = 0;
-  if (carousel) {
-    carousel.addEventListener('touchstart', (e) => {
-      const t = e.changedTouches[0];
-      touchStartX = t.clientX;
-      touchStartY = t.clientY;
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', (e) => {
-      const t = e.changedTouches[0];
-      const dx = t.clientX - touchStartX;
-      const dy = t.clientY - touchStartY;
-      // Only treat a deliberate, mostly-horizontal gesture as a carousel swipe.
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
-        show(current + (dx < 0 ? 1 : -1));
-        restart();
-      }
-    }, { passive: true });
-  }
-
-  restart();
-})();
-</script>
 
 
 <footer class="rv-footer">
