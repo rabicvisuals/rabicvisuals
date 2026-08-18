@@ -2067,20 +2067,6 @@ section { position: relative; }
   }
 }
 
-/* Contrast changes only while the landing header is transparent */
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .brand img {
-  filter: brightness(0) invert(1) !important;
-}
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .nav-toggle span {
-  background: #fff !important;
-}
-
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .brand img {
-  filter: brightness(0) !important;
-}
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .nav-toggle span {
-  background: #111 !important;
-}
 
 /* Once header is white (scroll/hover/menu), always use dark controls */
 .site-header.is-scrolled .brand img,
@@ -2148,28 +2134,6 @@ section { position: relative; }
 }
 
 
-/* Transparent header: navigation links follow the same slide contrast as logo/hamburger */
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a.active,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a[aria-current="page"] {
-  color: #fff !important;
-}
-
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a.active::after,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-dark .main-nav a[aria-current="page"]::after {
-  background-color: #fff !important;
-}
-
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a.active,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a[aria-current="page"] {
-  color: #111 !important;
-}
-
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a.active::after,
-.site-header.on-dark:not(.is-scrolled):not(.menu-open).hero-header-light .main-nav a[aria-current="page"]::after {
-  background-color: #111 !important;
-}
 
 /* When the landing header turns white on hover, links always become dark. */
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a,
@@ -2181,4 +2145,63 @@ section { position: relative; }
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a.active::after,
 .site-header.on-dark:not(.is-scrolled):not(.menu-open):hover .main-nav a[aria-current="page"]::after {
   background-color: #111 !important;
+}
+
+
+/* FINAL HEADER COLOR BEHAVIOR
+   Transparent header = white logo, white navigation, white hamburger.
+   White/scrolled/hover/menu header = black logo, black navigation, black hamburger. */
+
+/* Transparent landing header */
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .brand img {
+  filter: brightness(0) invert(1) !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a.active,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a[aria-current="page"] {
+  color: #fff !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a.active::after,
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .main-nav a[aria-current="page"]::after {
+  background-color: #fff !important;
+}
+
+.site-header.on-dark:not(.is-scrolled):not(.menu-open) .nav-toggle span {
+  background: #fff !important;
+}
+
+/* White header states */
+.site-header.is-scrolled .brand img,
+.site-header.menu-open .brand img,
+.site-header.on-dark:hover .brand img {
+  filter: brightness(0) !important;
+}
+
+.site-header.is-scrolled .main-nav a,
+.site-header.menu-open .main-nav a,
+.site-header.on-dark:hover .main-nav a,
+.site-header.is-scrolled .main-nav a.active,
+.site-header.menu-open .main-nav a.active,
+.site-header.on-dark:hover .main-nav a.active,
+.site-header.is-scrolled .main-nav a[aria-current="page"],
+.site-header.menu-open .main-nav a[aria-current="page"],
+.site-header.on-dark:hover .main-nav a[aria-current="page"] {
+  color: #111 !important;
+}
+
+.site-header.is-scrolled .main-nav a.active::after,
+.site-header.menu-open .main-nav a.active::after,
+.site-header.on-dark:hover .main-nav a.active::after,
+.site-header.is-scrolled .main-nav a[aria-current="page"]::after,
+.site-header.menu-open .main-nav a[aria-current="page"]::after,
+.site-header.on-dark:hover .main-nav a[aria-current="page"]::after {
+  background-color: #111 !important;
+}
+
+.site-header.is-scrolled .nav-toggle span,
+.site-header.menu-open .nav-toggle span,
+.site-header.on-dark:hover .nav-toggle span {
+  background: #111 !important;
 }

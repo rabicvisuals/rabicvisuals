@@ -125,12 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let current = Math.max(0, slides.findIndex(slide => slide.classList.contains("is-active")));
   let timer = null;
 
-  function updateHeaderContrast() {
-    if (!header) return;
-    const theme = slides[current]?.dataset.header || "dark";
-    header.classList.toggle("hero-header-light", theme === "light");
-    header.classList.toggle("hero-header-dark", theme !== "light");
-  }
+  function updateHeaderContrast() {}
 
   function restartProgress() {
     if (!progress) return;
