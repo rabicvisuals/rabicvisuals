@@ -2273,3 +2273,29 @@ section { position: relative; }
       visibility 0s linear .5s !important;
   }
 }
+
+
+/* FINAL: 4-second carousel transition/progress with hover pause support */
+.rv-carousel-slide {
+  transition:
+    opacity 4s cubic-bezier(.22,1,.36,1),
+    filter 4s cubic-bezier(.22,1,.36,1) !important;
+}
+
+.rv-carousel-slide.is-active {
+  animation-duration: 4s !important;
+}
+
+.rv-carousel-progress span {
+  animation-play-state: running;
+}
+
+@keyframes rvProgressFour {
+  from { width: var(--rv-progress-start, 0%); }
+  to   { width: 100%; }
+}
+
+
+.rv-hero-carousel.progress-running .rv-carousel-progress span {
+  animation: none !important;
+}

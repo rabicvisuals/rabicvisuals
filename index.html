@@ -106,32 +106,35 @@
   </div>
 </footer>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector(".rv-hero-carousel");
   if (!hero) return;
 
+  const header = document.querySelector(".site-header");
   const slides = Array.from(hero.querySelectorAll(".rv-carousel-slide"));
   const dots = Array.from(hero.querySelectorAll(".rv-carousel-dot"));
   const prev = hero.querySelector(".rv-carousel-prev");
   const next = hero.querySelector(".rv-carousel-next");
   const progress = hero.querySelector(".rv-carousel-progress span");
-  const header = document.querySelector(".site-header");
 
   if (!slides.length) return;
 
-  const SLIDE_DURATION = 7000;
+  const SLIDE_DURATION = 4000;
   let current = Math.max(0, slides.findIndex(slide => slide.classList.contains("is-active")));
-  let timer = null;
+  let timerId = null;
+  let startedAt = 0;
+  let remaining = SLIDE_DURATION;
+  let paused = false;
 
-  function updateHeaderContrast() {}
-
-  function restartProgress() {
+  function restartProgress(duration = SLIDE_DURATION) {
     if (!progress) return;
+    const fraction = Math.max(0, Math.min(1, 1 - (duration / SLIDE_DURATION)));
     progress.style.animation = "none";
+    progress.style.width = `${fraction * 100}%`;
     void progress.offsetWidth;
-    progress.style.animation = `rvProgressSeven ${SLIDE_DURATION}ms linear forwards`;
+    progress.style.animation = `rvProgressFour ${duration}ms linear forwards`;
+    progress.style.animationPlayState = paused ? "paused" : "running";
   }
 
   function show(index) {
@@ -147,46 +150,113 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.setAttribute("aria-selected", active ? "true" : "false");
     });
 
-    updateHeaderContrast();
-    restartProgress();
+    remaining = SLIDE_DURATION;
+    startedAt = performance.now();
+    restartProgress(SLIDE_DURATION);
   }
 
-  function scheduleNext() {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
+  function schedule(duration = remaining) {
+    clearTimeout(timerId);
+    if (paused) return;
+
+    remaining = duration;
+    startedAt = performance.now();
+
+    timerId = setTimeout(() => {
       show(current + 1);
-      scheduleNext();
-    }, SLIDE_DURATION);
+      schedule(SLIDE_DURATION);
+    }, remaining);
+  }
+
+  function pauseCarousel() {
+    if (paused) return;
+    paused = true;
+
+    const elapsed = performance.now() - startedAt;
+    remaining = Math.max(0, remaining - elapsed);
+    clearTimeout(timerId);
+
+    if (progress) {
+      progress.style.animationPlayState = "paused";
+    }
+
+    slides.forEach(slide => {
+      if (slide.classList.contains("is-active")) {
+        slide.style.animationPlayState = "paused";
+      }
+    });
+  }
+
+  function resumeCarousel() {
+    if (!paused) return;
+    paused = false;
+
+    if (progress) {
+      progress.style.animationPlayState = "running";
+    }
+
+    slides.forEach(slide => {
+      if (slide.classList.contains("is-active")) {
+        slide.style.animationPlayState = "running";
+      }
+    });
+
+    schedule(remaining);
   }
 
   function manualShow(index) {
+    paused = false;
     show(index);
-    scheduleNext();
+    schedule(SLIDE_DURATION);
   }
 
   prev?.addEventListener("click", () => manualShow(current - 1));
   next?.addEventListener("click", () => manualShow(current + 1));
   dots.forEach((dot, i) => dot.addEventListener("click", () => manualShow(i)));
 
+  /* Pause only while the pointer is over the photo area.
+     Moving onto the header resumes immediately, even though the header overlays the hero. */
+  hero.addEventListener("mousemove", (event) => {
+    const overHeader = header && event.target.closest(".site-header");
+    if (overHeader) {
+      resumeCarousel();
+    } else {
+      pauseCarousel();
+    }
+  });
+
+  hero.addEventListener("mouseleave", () => {
+    resumeCarousel();
+  });
+
+  if (header) {
+    header.addEventListener("mouseenter", () => {
+      resumeCarousel();
+    });
+  }
+
+  /* Keep swipe support on touch devices. */
   let startX = 0;
   let startY = 0;
-  hero.addEventListener("touchstart", (e) => {
-    if (!e.touches?.length) return;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
+
+  hero.addEventListener("touchstart", (event) => {
+    if (!event.touches?.length) return;
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
   }, { passive: true });
 
-  hero.addEventListener("touchend", (e) => {
-    if (!e.changedTouches?.length) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    const dy = e.changedTouches[0].clientY - startY;
+  hero.addEventListener("touchend", (event) => {
+    if (!event.changedTouches?.length) return;
+    const dx = event.changedTouches[0].clientX - startX;
+    const dy = event.changedTouches[0].clientY - startY;
+
     if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.25) {
       manualShow(current + (dx < 0 ? 1 : -1));
     }
   }, { passive: true });
 
   show(current);
-  scheduleNext();
+  schedule(SLIDE_DURATION);
 });
 </script>
 
